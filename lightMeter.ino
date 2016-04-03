@@ -7,25 +7,25 @@ const int pinLight = A0;
 
 void setup()
 {
-      bar.begin();
-     Serial.begin(9600);
+      bar.begin();//start LED display
+      Serial.begin(9600);//start console
     
      
 }
 
 void loop()
 {
-    int value = analogRead(pinLight);
-    int show = (value/75);
-    if (show < 3) { show = 2 ;}
-    if (value < 80) { show = 1 ;}
+    int value = analogRead(pinLight); //read light sensor
+    int show = (value/75);            //reduce reading into dislay range
+    if (show < 3) { show = 2 ;}       //never show fewer than 2 lower segments pending next test
+    if (value < 80) { show = 1 ;}     //when reading less than 80 only show 1 segment (very low light)
     
    
     
-    Serial.println(show);
+    Serial.println(show);//display reading on console
     
     
-    bar.setLevel(show);
+    bar.setLevel(show);//set LED Display
  
   
     
